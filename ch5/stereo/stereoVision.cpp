@@ -3,27 +3,24 @@
 #include <string>
 #include <Eigen/Core>
 #include <pangolin/pangolin.h>
-#include <unistd.h>
-
+#include <chrono>
 using namespace std;
 using namespace Eigen;
 
-// 文件路径
-string left_file = "./left.png";
-string right_file = "./right.png";
+// input images
+string left_file = "C:/Data/dev/slambook2/ch5/stereo/left.png";
+string right_file = "C:/Data/dev/slambook2/ch5/stereo/right.png";
 
-// 在pangolin中画图，已写好，无需调整
 void showPointCloud(
     const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &pointcloud);
 
 int main(int argc, char **argv) {
 
-    // 内参
+    // camera intrinsics
     double fx = 718.856, fy = 718.856, cx = 607.1928, cy = 185.2157;
-    // 基线
+    // baseline
     double b = 0.573;
 
-    // 读取图像
     cv::Mat left = cv::imread(left_file, 0);
     cv::Mat right = cv::imread(right_file, 0);
     cv::Ptr<cv::StereoSGBM> sgbm = cv::StereoSGBM::create(
@@ -95,7 +92,7 @@ void showPointCloud(const vector<Vector4d, Eigen::aligned_allocator<Vector4d>> &
         }
         glEnd();
         pangolin::FinishFrame();
-        usleep(5000);   // sleep 5 ms
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));   // sleep 5 ms
     }
     return;
 }

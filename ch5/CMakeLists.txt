@@ -1,12 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.19.0)
 
-set(CMAKE_BUILD_TYPE "Release")
-# 添加c++ 11标准支持
-set(CMAKE_CXX_FLAGS "-std=c++11 -O2")
+set(CMAKE_BUILD_TYPE "Debug")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_FLAGS "-O2")
 
 # Eigen
-include_directories("/usr/include/eigen3")
-
+find_package(Eigen3 REQUIRED)
 # 寻找OpenCV库
 find_package(OpenCV REQUIRED)
 # 添加头文件
