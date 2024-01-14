@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include <Eigen/Core>
-#include <Eigen/Geometry>
-#include "sophus/se3.hpp"
+#include <eigen3/Eigen/Core>
+#include <eigen3/Eigen/Geometry>
+#include <sophus/se3.hpp>
 
 using namespace std;
 using namespace Eigen;
